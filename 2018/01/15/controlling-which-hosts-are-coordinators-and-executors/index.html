@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="黄骞的博客">
 <meta property="og:description" content="控制哪些主机是Coordinators和Executors默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：  主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能会遇到">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-15T09:27:17.000Z">
+<meta property="og:updated_time" content="2018-01-15T09:28:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="impala控制哪些机器是协调器或者执行器">
 <meta name="twitter:description" content="控制哪些主机是Coordinators和Executors默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：  主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能会遇到">
@@ -185,7 +185,7 @@
 </li>
 </ul>
 <p>默认情况下，这两个设置都为每个impalad实例启用，允许所有这些主机同时担任执行者和协调者。</p>
-<p>例如，在100个节点的集群上，可以为10个主机指定<code>is_executor = false</code>，将这些主机专用为查询协调器。然后为其余的90个主机指定is_coordinator = false。所有显式或负载均衡的连接都必须作为协调者的10个主机。这些主机执行网络通信以保持元数据最新并将查询结果传送给适当的客户端。其余的90个主机执行构成每个查询的大部分工作的密集I/O，CPU和内存操作。如果特定主机上出现瓶颈或其他性能问题，则可以更轻松地缩小原因，因为每个主机都专门用于整个Impala工作负载中的特定操作。</p>
+<p>例如，在100个节点的集群上，可以为10个主机指定<code>is_executor = false</code>，将这些主机专用为查询协调器。然后为其余的90个主机指定<code>is_coordinator = false</code>。所有显式或负载均衡的连接都必须作为协调者的10个主机。这些主机执行网络通信以保持元数据最新并将查询结果传送给适当的客户端。其余的90个主机执行构成每个查询的大部分工作的密集I/O，CPU和内存操作。如果特定主机上出现瓶颈或其他性能问题，则可以更轻松地缩小原因，因为每个主机都专门用于整个Impala工作负载中的特定操作。</p>
 
       
 
