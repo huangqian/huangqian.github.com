@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://huangqian.site">
-  <title>Archives: 2018/1 | 黄骞的博客</title>
+  <title>impala控制哪些机器是协调器或者执行器 | 黄骞的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="黄骞的博客">
-<meta property="og:url" content="http://huangqian.site/archives/2018/01/index.html">
+  <meta name="description" content="##控制哪些主机是Coordinators和Executors 默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：  主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能">
+<meta name="keywords" content="impala,warehouse">
+<meta property="og:type" content="article">
+<meta property="og:title" content="impala控制哪些机器是协调器或者执行器">
+<meta property="og:url" content="http://huangqian.site/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/index.html">
 <meta property="og:site_name" content="黄骞的博客">
+<meta property="og:description" content="##控制哪些主机是Coordinators和Executors 默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：  主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-15T09:26:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄骞的博客">
+<meta name="twitter:title" content="impala控制哪些机器是协调器或者执行器">
+<meta name="twitter:description" content="##控制哪些主机是Coordinators和Executors 默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：  主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能">
   
     <link rel="alternative" href="/atom.xml" title="黄骞的博客" type="application/atom+xml">
   
@@ -140,36 +145,77 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-controlling-which-hosts-are-coordinators-and-executors" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/" class="archive-article-date">
-  	<time datetime="2018-01-15T09:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/">impala控制哪些机器是协调器或者执行器</a>
+    <h1 class="article-title" itemprop="name">
+      impala控制哪些机器是协调器或者执行器
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/" class="archive-article-date">
+  	<time datetime="2018-01-15T09:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##控制哪些主机是Coordinators和Executors</p>
+<p>默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：</p>
+<ul>
+<li><p>主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能会遇到显着的网络和CPU开销。每个协调器缓存所有表分区和数据文件的元数据，这些数据文件可能很大，并与处理由查询执行器执行的连接，聚合和其他操作所需的内存竞争。</p>
+</li>
+<li><p>大量主机充当协调器可能会导致不必要的网络开销甚至超时错误，因为每个主机都与状态存储后台进程通信以进行元数据更新。</p>
+</li>
+<li><p>当有大量负载较重的主机充当协调者时，由准入控制功能施加的“软限制”更可能被超过。</p>
+</li>
+</ul>
+<p>如果出现这种可伸缩性瓶颈，则可以明确指定某些主机充当查询协调器，而不是查询片段的执行器。这些主机不参与扫描等I/O密集型操作，以及聚合等CPU密集型操作。</p>
+<p>然后，您指定其他主机充当执行器，但不是协调器。这些主机不会与<code>statestored</code>的守护进程通信或处理来自查询的最终结果集。您无法通过客户端（如impala-shell或商业智能工具）连接到这些主机。</p>
+<p>此功能在CDH 5.12 / Impala 2.9及更高版本中可用。</p>
+<p>要使用此功能，请在每个主机上为impalad后台驻留程序指定以下启动标志之一：</p>
+<ul>
+<li><p><code>is_executor = falseforeachhost</code>，它不作为查询协调者。此设置通常适用于相对较少数量的主机，因为最常见的拓扑结构是几乎所有<code>DataNode</code>都在为查询执行工作。</p>
+</li>
+<li><p><code>is_coordinator = false</code>。对于不充当Impala查询协调者的每个主机，这些东道主完全是执行者。具有此设置的主机数量通常随着集群变大并处理更多的表分区，数据文件和并发查询而增加。随着查询协调的开销增加，将这些工作集中在专用主机上变得更加重要。</p>
+</li>
+</ul>
+<p>默认情况下，这两个设置都为每个impalad实例启用，允许所有这些主机同时担任执行者和协调者。</p>
+<p>例如，在100个节点的集群上，可以为10个主机指定<code>is_executor = false</code>，将这些主机专用为查询协调器。然后为其余的90个主机指定is_coordinator = false。所有显式或负载均衡的连接都必须作为协调者的10个主机。这些主机执行网络通信以保持元数据最新并将查询结果传送给适当的客户端。其余的90个主机执行构成每个查询的大部分工作的密集I/O，CPU和内存操作。如果特定主机上出现瓶颈或其他性能问题，则可以更轻松地缩小原因，因为每个主机都专门用于整个Impala工作负载中的特定操作。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,57 +227,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://huangqian.site/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/15/start-blog/" class="archive-article-date">
-  	<time datetime="2018-01-15T04:02:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-15</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/15/start-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">新目标起航</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/start-blog/">新目标起航</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -254,8 +349,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
