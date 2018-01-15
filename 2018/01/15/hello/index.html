@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://huangqian.site">
-  <title>Archives: 2018/1 | 黄骞的博客</title>
+  <title>hello | 黄骞的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="黄骞的博客">
-<meta property="og:url" content="http://huangqian.site/archives/2018/01/index.html">
+  <meta name="description" content="开始的缘由 新年伊始，突然有了写东西的想法。2017年，有很多东西需要总结，有些记录在自己的git的note里面，有一些在公司的专栏博客里面，还有一些在“等有空的时候”流失了。很可惜，这些是自己的成长的记录。于是乎，决定自己构建博客，把日常工作、学习的知识，做一些总结和记录。日后也可看看自己的记录，犯过的错，督促自己学习进步！ 方向2017年，我阅读了storm和kafka的源码，弄清楚了很多东西">
+<meta name="keywords" content="随笔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hello">
+<meta property="og:url" content="http://huangqian.site/2018/01/15/hello/index.html">
 <meta property="og:site_name" content="黄骞的博客">
+<meta property="og:description" content="开始的缘由 新年伊始，突然有了写东西的想法。2017年，有很多东西需要总结，有些记录在自己的git的note里面，有一些在公司的专栏博客里面，还有一些在“等有空的时候”流失了。很可惜，这些是自己的成长的记录。于是乎，决定自己构建博客，把日常工作、学习的知识，做一些总结和记录。日后也可看看自己的记录，犯过的错，督促自己学习进步！ 方向2017年，我阅读了storm和kafka的源码，弄清楚了很多东西">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-15T03:59:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="黄骞的博客">
+<meta name="twitter:title" content="hello">
+<meta name="twitter:description" content="开始的缘由 新年伊始，突然有了写东西的想法。2017年，有很多东西需要总结，有些记录在自己的git的note里面，有一些在公司的专栏博客里面，还有一些在“等有空的时候”流失了。很可惜，这些是自己的成长的记录。于是乎，决定自己构建博客，把日常工作、学习的知识，做一些总结和记录。日后也可看看自己的记录，犯过的错，督促自己学习进步！ 方向2017年，我阅读了storm和kafka的源码，弄清楚了很多东西">
   
     <link rel="alternative" href="/atom.xml" title="黄骞的博客" type="application/atom+xml">
   
@@ -140,36 +145,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hello" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/15/hello/" class="archive-article-date">
-  	<time datetime="2018-01-15T03:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-15</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/15/hello/">hello</a>
+    <h1 class="article-title" itemprop="name">
+      hello
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/15/hello/" class="archive-article-date">
+  	<time datetime="2018-01-15T03:40:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="开始的缘由"><a href="#开始的缘由" class="headerlink" title="开始的缘由"></a>开始的缘由</h3><p> 新年伊始，突然有了写东西的想法。2017年，有很多东西需要总结，有些记录在自己的git的note里面，有一些在公司的专栏博客里面，还有一些在“等有空的时候”流失了。很可惜，这些是自己的成长的记录。于是乎，决定自己构建博客，把日常工作、学习的知识，做一些总结和记录。日后也可看看自己的记录，犯过的错，督促自己学习进步！</p>
+<h3 id="方向"><a href="#方向" class="headerlink" title="方向"></a>方向</h3><p>2017年，我阅读了storm和kafka的源码，弄清楚了很多东西，对于我的架构设计和性能优化帮助很大，可惜的是这些笔记和自己的思考没有记录下来。2018年的几个方向：</p>
+<ul>
+<li>Kudu： 新的大数据存储平台，在事件分析平台和数据仓库中大规模使用。其主键和事物能够提供一定幂等性，搭配impala提供不错的查询性能，写入方案先写入内存，定期刷盘，这可以提高写入性能，也能解决hive作为数据接入层大量的小文件问题。</li>
+<li>impala：SQL引擎中计算性能不错，目前最适合即时响应的方案。同时支持hive、kudu，作为数据仓库非常不错的方案。</li>
+<li>druid： 能做解决多维度roll-up数据的存储，并且能够有良好的响应速度。适合多维的统计结果存储和非事件原子粒度的分析平台存储方案。</li>
+<li>spark： 数据挖掘目前应用最广的平台</li>
+<li>flink： 发展趋势不错的计算平台，未来可能会替代spark在实时和离线的方向</li>
+<li>beam： 统一编程模型框架</li>
+<li><p>hadoop </p>
+<ol>
+<li>hdfs： 深层次的原理探索，源码分析</li>
+<li>yarn：深层次的原理探索，源码分析，构建应用</li>
+</ol>
+</li>
+<li><p>lisp</p>
+<ol>
+<li>clojure</li>
+<li>scheme</li>
+</ol>
+</li>
+</ul>
+<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>在今年，尽量保持一周1-3篇的节奏。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -181,46 +228,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://huangqian.site/2018/01/15/hello/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/14/hello-world/" class="archive-article-date">
-  	<time datetime="2018-01-14T11:38:26.361Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/14/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/14/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -243,8 +350,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
