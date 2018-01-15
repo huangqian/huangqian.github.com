@@ -149,7 +149,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/">impala控制哪些机器是协调器或者执行器</a>
+      <a class="article-title" href="/2018/01/15/controlling-which-hosts-are-coordinators-and-executors/">控制哪些主机是Coordinators和Executors</a>
     </h1>
   
 
@@ -162,7 +162,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="控制哪些主机是Coordinators和Executors"><a href="#控制哪些主机是Coordinators和Executors" class="headerlink" title="控制哪些主机是Coordinators和Executors"></a>控制哪些主机是Coordinators和Executors</h2><p>默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：</p>
+        <p>默认情况下，运行impalad后台驻留程序的群集中的每个主机都可以充当Impala查询的协调者，执行查询执行计划的片段或两者。在大规模查询的高度并发工作负载（尤其是大型集群）期间，双重角色可能导致可伸缩性问题：</p>
 <ul>
 <li><p>主机担任协调器所需的额外工作可能会干扰其在查询的早期阶段执行其他工作的能力。例如，在包含大量查询片段的查询期间，协调器可能会遇到显着的网络和CPU开销。每个协调器缓存所有表分区和数据文件的元数据，这些数据文件可能很大，并与处理由查询执行器执行的连接，聚合和其他操作所需的内存竞争。</p>
 </li>
