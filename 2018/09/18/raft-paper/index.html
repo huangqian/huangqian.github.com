@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="黄骞的博客">
 <meta property="og:description" content="Raft协议摘要Raft 是一种为了管理复制日志的一致性算法。它提供了和 Paxos 算法相同的功能和性能，但是它的算法结构和 Paxos 不同，使得 Raft 算法更加容易理解并且更容易构建实际的系统。为了提升可理解性，Raft 将一致性算法分解成了几个关键模块，例如领导人选举、日志复制和安全性。同时它通过实施一个更强的一致性来减少需要考虑的状态的数量。从一个用户研究的结果可以证明，对于学生而言">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://huangqian.site/raft/raft_replica_state_machine.jpg">
+<meta property="og:image" content="http://huangqian.site/raft-paper/raft_replica_state_machine.jpg">
 <meta property="og:image" content="http://huangqian.site/2018/09/18/raft-paper/raft_role_transform.png">
 <meta property="og:image" content="http://huangqian.site/2018/09/18/raft-paper/raft_term.png">
 <meta property="og:image" content="http://huangqian.site/2018/09/18/raft-paper/raft_log_replica.png">
@@ -29,11 +29,11 @@
 <meta property="og:image" content="http://huangqian.site/2018/09/18/raft-paper/raft_understand.png">
 <meta property="og:image" content="http://huangqian.site/2018/09/18/raft-paper/raft_explanation.png">
 <meta property="og:image" content="http://huangqian.site/2018/09/18/raft-paper/raft_performace.png">
-<meta property="og:updated_time" content="2018-09-18T13:56:46.747Z">
+<meta property="og:updated_time" content="2018-09-18T14:00:46.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="raft协议">
 <meta name="twitter:description" content="Raft协议摘要Raft 是一种为了管理复制日志的一致性算法。它提供了和 Paxos 算法相同的功能和性能，但是它的算法结构和 Paxos 不同，使得 Raft 算法更加容易理解并且更容易构建实际的系统。为了提升可理解性，Raft 将一致性算法分解成了几个关键模块，例如领导人选举、日志复制和安全性。同时它通过实施一个更强的一致性来减少需要考虑的状态的数量。从一个用户研究的结果可以证明，对于学生而言">
-<meta name="twitter:image" content="http://huangqian.site/raft/raft_replica_state_machine.jpg">
+<meta name="twitter:image" content="http://huangqian.site/raft-paper/raft_replica_state_machine.jpg">
   
     <link rel="alternative" href="/atom.xml" title="黄骞的博客" type="application/atom+xml">
   
@@ -203,7 +203,7 @@ var _hmt = _hmt || [];
 <p>我们相信，Raft 算法不论出于教学目的还是作为实践项目的基础都是要比 Paxos 或者其他一致性算法要优异的。它比其他算法更加简单，更加容易理解；它的算法描述足以实现一个现实的系统；它有好多开源的实现并且在很多公司里使用；它的安全性已经被证明；它的效率和其他算法比起来也不相上下。</p>
 <p>接下来，这篇论文会介绍以下内容：复制状态机问题（第 2 节），讨论 Paxos 的优点和缺点（第 3 节），讨论我们为了理解能力而使用的方法（第 4 节），阐述 Raft 一致性算法（第 5-8 节），评价 Raft 算法（第 9 节），以及一些相关的工作（第 10 节）。</p>
 <h2 id="2-复制状态机"><a href="#2-复制状态机" class="headerlink" title="2 复制状态机"></a>2 复制状态机</h2><p>一致性算法是从复制状态机的背景下提出的（参考英文原文引用37）。在这种方法中，一组服务器上的状态机产生相同状态的副本，并且在一些机器宕掉的情况下也可以继续运行。复制状态机在分布式系统中被用于解决很多容错的问题。例如，大规模的系统中通常都有一个集群领导者，像 GFS、HDFS 和 RAMCloud，典型应用就是一个独立的的复制状态机去管理领导选举和存储配置信息并且在领导人宕机的情况下也要存活下来。比如 Chubby 和 ZooKeeper。</p>
-<p><img src="/raft/raft_replica_state_machine.jpg" alt="图1"></p>
+<p><img src="/raft-paper/raft_replica_state_machine.jpg" alt="图1"></p>
 <blockquote>
 <p>图 1 ：复制状态机的结构。一致性算法管理着来自客户端指令的复制日志。状态机从日志中处理相同顺序的相同指令，所以产生的结果也是相同的。</p>
 </blockquote>
@@ -856,6 +856,15 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2018/09/18/raft/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          raft
+        
+      </div>
+    </a>
+  
   
     <a href="/2018/09/07/hdfs-overview/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">HDFS的基本原理</div>
@@ -984,6 +993,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">impala</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">warehouse</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">HDFS</a>
               </li>
              
@@ -1001,14 +1018,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">impala</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">warehouse</a>
               </li>
              
               <li class="article-tag-list-item">
