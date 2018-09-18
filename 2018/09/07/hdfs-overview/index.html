@@ -12,24 +12,24 @@
 <meta name="keywords" content="HDFS,Hadoop,分布式,bigData">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HDFS的基本原理">
-<meta property="og:url" content="http://huangqian.site/2018/09/18/hdfs-overview/index.html">
+<meta property="og:url" content="http://huangqian.site/2018/09/07/hdfs-overview/index.html">
 <meta property="og:site_name" content="黄骞的博客">
 <meta property="og:description" content="HDFS的基本原理   随着互联网的发展，数据日益增多，增长超过了单机能够处理的上线，数据如何存储和处理成为了科技公司的难题，随着google的三篇论文的发布，大家终于找到了一个方案-分布式文件系统+MapReduce。Hadoop是参考google论文实现的，集成了分布式文件系统与分布式批处理平台。hadoop的设计目标是用来解决大文件海量存储和批处理的，为了避免单个节点故障导致数据丢失，设计副">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs-architecture.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs-datanodes.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/namenode-ha-arch.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs-qjm.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/qjm_detail_arch.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/namenode_switch.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs_read.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs_write.png">
-<meta property="og:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs-write-internal.png">
-<meta property="og:updated_time" content="2018-09-18T13:11:47.767Z">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs-architecture.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs-datanodes.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/namenode-ha-arch.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs-qjm.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/qjm_detail_arch.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/namenode_switch.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs_read.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs_write.png">
+<meta property="og:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs-write-internal.png">
+<meta property="og:updated_time" content="2018-09-18T13:12:58.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HDFS的基本原理">
 <meta name="twitter:description" content="HDFS的基本原理   随着互联网的发展，数据日益增多，增长超过了单机能够处理的上线，数据如何存储和处理成为了科技公司的难题，随着google的三篇论文的发布，大家终于找到了一个方案-分布式文件系统+MapReduce。Hadoop是参考google论文实现的，集成了分布式文件系统与分布式批处理平台。hadoop的设计目标是用来解决大文件海量存储和批处理的，为了避免单个节点故障导致数据丢失，设计副">
-<meta name="twitter:image" content="http://huangqian.site/2018/09/18/assets/chat/hdfs-architecture.png">
+<meta name="twitter:image" content="http://huangqian.site/2018/09/07/assets/chat/hdfs-architecture.png">
   
     <link rel="alternative" href="/atom.xml" title="黄骞的博客" type="application/atom+xml">
   
@@ -177,8 +177,8 @@ var _hmt = _hmt || [];
   
 
         
-        <a href="/2018/09/18/hdfs-overview/" class="archive-article-date">
-  	<time datetime="2018-09-18T13:01:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-18</time>
+        <a href="/2018/09/07/hdfs-overview/" class="archive-article-date">
+  	<time datetime="2018-09-07T12:01:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-07</time>
 </a>
         
       </header>
@@ -380,7 +380,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://huangqian.site/2018/09/18/hdfs-overview/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://huangqian.site/2018/09/07/hdfs-overview/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -394,9 +394,18 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
+    <a href="/2018/09/18/raft/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Raft协议
+        
+      </div>
+    </a>
   
-    <a href="/2018/09/18/raft/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Raft协议</div>
+  
+    <a href="/2018/03/06/广告投放预估覆盖人群范围的方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">广告投放预估覆盖人群范围的方案</div>
       <i class="icon-circle-right"></i>
     </a>
   
